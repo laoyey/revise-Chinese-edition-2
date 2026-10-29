@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="金融学 Ch02–Ch04 利率章节交互式选择题题库，共 150 题，附解析、错题复习与成绩统计。">
+  <title>利率学习室 · 三章交互题库</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="章节导航">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">i<span>%</span></div>
+        <div><strong>利率学习室</strong><small>INTEREST RATE STUDIO</small></div>
+      </div>
+      <button class="nav-item active" id="homeNav" type="button">
+        <span class="nav-icon">⌂</span><span>学习总览</span>
+      </button>
+      <div class="nav-label">章节练习</div>
+      <nav id="chapterNav"></nav>
+      <div class="sidebar-note">
+        <div class="note-icon">✦</div>
+        <p>先理解，再记忆。<br>每道题都附有考点解析与课件页码。</p>
+      </div>
+      <div class="sidebar-footer">
+        <span class="save-dot"></span><span>学习进度自动保存在本机</span>
+      </div>
+    </aside>
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <main class="main-content">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="menuButton" aria-label="打开章节导航" type="button">☰</button>
+        <div class="breadcrumb" id="breadcrumb"><span>金融学</span><b>/</b><strong>学习总览</strong></div>
+        <div class="topbar-actions">
+          <span class="keyboard-hint">快捷键 1–4 作答 · ← → 切题</span>
+          <button class="text-button" id="resetAllButton" type="button">清空记录</button>
+        </div>
+      </header>
+
+      <section id="homeView" class="view home-view">
+        <div class="hero">
+          <div class="hero-copy">
+            <div class="eyebrow"><span></span> MONEY, BANKING & FINANCIAL MARKETS</div>
+            <h1>把利率学明白，<br><em>一题一题。</em></h1>
+            <p>覆盖 Ch02–Ch04 的三章核心考点。按重要程度与常见考法配置概念、计算和情境题，答题后立即查看解析。</p>
+            <div class="hero-actions">
+              <button class="primary-button" id="startButton" type="button">开始 Chapter 2 <span>→</span></button>
+              <button class="secondary-button" id="continueButton" type="button">继续上次练习</button>
+            </div>
+          </div>
+          <div class="hero-visual" aria-hidden="true">
+            <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+            <div class="formula-card formula-main"><span>PRICE × YIELD</span><strong>P = Σ <i>CF<sub>t</sub></i> / (1+i)<sup>t</sup></strong><small>现金流与利率之间的桥梁</small></div>
+            <div class="formula-chip chip-one">PV → FV</div>
+            <div class="formula-chip chip-two">i = r + π<sup>e</sup></div>
+            <div class="formula-chip chip-three">B = C′D</div>
+          </div>
+        </div>
+
+        <div class="stats-grid" id="overallStats"></div>
+
+        <div class="section-heading">
+          <div><span class="section-kicker">YOUR COURSE</span><h2>三章题库</h2></div>
+          <span class="section-caption">每章 50 题 · 共 150 题</span>
+        </div>
+        <div class="chapter-grid" id="chapterCards"></div>
+
+        <div class="method-note">
+          <div class="method-icon">◎</div>
+          <div><strong>题型如何分配？</strong><p>依据课件篇幅、公式密度与常见考试方式：Ch02 提高计算与应用比重；Ch03 突出曲线移动和情境判断；Ch04 均衡覆盖理论比较、矩阵定价与 Bootstrap 计算。所有题均为单项选择题。</p></div>
+        </div>
+      </section>
+
+      <section id="quizView" class="view quiz-view hidden">
+        <div class="quiz-heading">
+          <div>
+            <div class="eyebrow compact" id="quizEyebrow"></div>
+            <h1 id="quizTitle"></h1>
+            <p id="quizDescription"></p>
+          </div>
+          <div class="quiz-heading-actions">
+            <button class="secondary-button" id="shuffleButton" type="button">⇄ 随机题序</button>
+            <button class="primary-button" id="scoreButton" type="button">查看成绩</button>
+          </div>
+        </div>
+
+        <div class="chapter-progress-card">
+          <div class="progress-stats" id="chapterProgressStats"></div>
+          <div class="progress-track"><div class="progress-fill" id="chapterProgressFill"></div></div>
+        </div>
+
+        <div class="practice-layout">
+          <div class="question-column">
+            <div class="question-toolbar">
+              <div class="filter-group" id="filterGroup" aria-label="筛选题目">
+                <button class="filter-button active" data-filter="all" type="button">全部</button>
+                <button class="filter-button" data-filter="unanswered" type="button">未答</button>
+                <button class="filter-button" data-filter="wrong" type="button">错题</button>
+                <button class="filter-button" data-filter="bookmarked" type="button">收藏</button>
+              </div>
+              <span class="question-position" id="questionPosition"></span>
+            </div>
+
+            <article class="question-card" id="questionCard">
+              <div class="question-meta" id="questionMeta"></div>
+              <h2 class="question-text" id="questionText"></h2>
+              <div class="options-list" id="optionsList"></div>
+              <div class="feedback hidden" id="feedback"></div>
+              <div class="question-footer">
+                <button class="bookmark-button" id="bookmarkButton" type="button"><span>☆</span> 收藏本题</button>
+                <span class="source-label" id="sourceLabel"></span>
+              </div>
+            </article>
+
+            <div class="question-navigation">
+              <button class="secondary-button" id="prevButton" type="button">← 上一题</button>
+              <button class="primary-button" id="nextButton" type="button">下一题 →</button>
+            </div>
+            <div class="empty-state hidden" id="emptyState">
+              <div>✓</div><h3>这个筛选下暂时没有题目</h3><p>切换上方筛选条件，或先完成更多练习。</p>
+              <button class="secondary-button" id="showAllButton" type="button">查看全部题目</button>
+            </div>
+          </div>
+
+          <aside class="question-map-card">
+            <div class="map-heading"><div><span>QUESTION MAP</span><h3>本章题号</h3></div><strong id="mapCount"></strong></div>
+            <div class="map-legend"><span><i class="legend-dot answered"></i>已答</span><span><i class="legend-dot correct"></i>答对</span><span><i class="legend-dot wrong"></i>答错</span><span><i class="legend-dot marked"></i>收藏</span></div>
+            <div class="question-map" id="questionMap"></div>
+            <div class="type-breakdown" id="typeBreakdown"></div>
+            <button class="reset-chapter-button" id="resetChapterButton" type="button">重新作答本章</button>
+          </aside>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <dialog class="score-dialog" id="scoreDialog">
+    <button class="dialog-close" id="closeScoreButton" aria-label="关闭成绩" type="button">×</button>
+    <div id="scoreContent"></div>
+  </dialog>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script src="questions.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

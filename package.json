@@ -1,0 +1,9 @@
+{
+  "name": "interest-rate-quiz-studio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Ch02–Ch04 利率章节交互式选择题练习",
+  "scripts": {
+    "dev": "node server.js"
+  }
+}
